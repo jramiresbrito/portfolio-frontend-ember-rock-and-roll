@@ -1,12 +1,15 @@
-{{page-title "Songs | Rock & Roll with Octane" replace=true}}
-
+{{page-title 'Songs 🎸 Rock & Roll with Octane' replace=true}}
 {{#if @model.length}}
   <ul>
     {{#each @model as |song|}}
       <li class="mb-2">
         {{song.title}}
         <span class="float-right">
-          {{song.rating}}
+          <StarRating
+            @rating={{song.rating}}
+            @onUpdate={{set song 'rating'}}
+            @enableSpin={{true}}
+          />
         </span>
       </li>
     {{/each}}
