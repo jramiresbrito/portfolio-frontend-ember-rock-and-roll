@@ -21,6 +21,11 @@ export default class CatalogService extends Service {
     this.storage.songs = tracked([]);
   }
 
+  find(type, filterFn) {
+    let collection = type === 'band' ? this.bands : this.songs;
+    return collection.find(filterFn);
+  }
+
   async fetchAll(type) {
     if (type === 'bands') {
       let response = await fetch('/bands');
@@ -39,6 +44,10 @@ export default class CatalogService extends Service {
     }
   }
 
+  load(response) {
+    return this.#loadResource(response.data);
+  }
+
   loadAll(json) {
     let records = [];
     for (const item of json.data) {
@@ -46,6 +55,40 @@ export default class CatalogService extends Service {
     }
 
     return records;
+  }
+
+  add(type, record) {
+    let collection = type === 'band' ? this.storage.bands : this.storage.songs;
+    collection.push(record);
+  }
+
+  async create(type, attributes, relationships = {}) {
+    let payload = {
+      data: {
+        type: type === 'band' ? 'bands' : 'songs',
+        attributes,
+        relationships,
+      },
+    };
+
+    let response = await fetch(type === 'band' ? '/bands' : '/songs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/vnd.api+json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    let json = await response.json();
+    return this.load(json);
+  }
+
+  get bands() {
+    return this.storage.bands;
+  }
+
+  get songs() {
+    return this.storage.songs;
   }
 
   #loadResource(data) {
@@ -64,23 +107,5 @@ export default class CatalogService extends Service {
     }
 
     return record;
-  }
-
-  add(type, record) {
-    let collection = type === 'band' ? this.storage.bands : this.storage.songs;
-    collection.push(record);
-  }
-
-  find(type, filterFn) {
-    let collection = type === 'band' ? this.bands : this.songs;
-    return collection.find(filterFn);
-  }
-
-  get bands() {
-    return this.storage.bands;
-  }
-
-  get songs() {
-    return this.storage.songs;
   }
 }
