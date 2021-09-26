@@ -1,7 +1,8 @@
 import Service from '@ember/service';
-import { tracked } from 'tracked-built-ins';
 import Band from 'rock-and-roll/models/band';
 import Song from 'rock-and-roll/models/song';
+import { tracked } from 'tracked-built-ins';
+import { isArray } from '@ember/array';
 
 function extractRelationships(object) {
   let relationships = {};
@@ -55,6 +56,16 @@ export default class CatalogService extends Service {
     }
 
     return records;
+  }
+
+  async fetchRelated(record, relationship) {
+    let url = record.relationships[relationship];
+    let response = await fetch(url);
+    let json = await response.json();
+    if (isArray(json.data)) record[relationship] = this.loadAll(json);
+    else record[relationship] = this.load(json);
+
+    return record[relationship];
   }
 
   add(type, record) {
