@@ -17,6 +17,6 @@ export default class BandsNewController extends Controller {
   @action
   async saveBand() {
     let band = await this.catalog.create('band', { name: this.name });
-    this.router.trantistionTo('bands.band.songs', band.id);
+    this.router.transitionTo('bands.band.songs', band.id);
   }
 }
