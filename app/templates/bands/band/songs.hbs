@@ -7,7 +7,7 @@
         <span class="float-right">
           <StarRating
             @rating={{song.rating}}
-            @onUpdate={{set song 'rating'}}
+            @onUpdate={{fn this.updateRating song}}
             @enableSpin={{true}}
           />
         </span>
