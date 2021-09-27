@@ -51,9 +51,7 @@ export default class CatalogService extends Service {
 
   loadAll(json) {
     let records = [];
-    for (const item of json.data) {
-      records.push(this.#loadResource(item));
-    }
+    for (const item of json.data) records.push(this.#loadResource(item));
 
     return records;
   }
