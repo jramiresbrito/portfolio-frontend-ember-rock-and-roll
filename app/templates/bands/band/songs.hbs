@@ -15,7 +15,7 @@
     {{/each}}
   </ul>
 {{else}}
-  <p class="text-center">
+  <p class="text-center" data-test-rr="no-songs-text">
     The band has no songs yet.
   </p>
 {{/if}}
@@ -25,7 +25,7 @@
       type="button"
       class="bg-purple-600 rounded px-4 py-2 shadow-md hover:shadow-lg
       hover:text-white hover:bg-purple-500 focus:outline-none"
-      {{on "click" (set this "showAddSong" false)}}
+      {{on 'click' (set this 'showAddSong' false)}}
     >
       Add song
     </buttton>
@@ -37,13 +37,13 @@
       class="text-gray-800 bg-white rounded-md py-2 px-4"
       placeholder="Title"
       value={{this.title}}
-      {{on "input" this.updateTitle}}
+      {{on 'input' this.updateTitle}}
     />
     <button
       type="button"
       class="bg-purple-600 rounded px-4 py-2 ml-4 shadow-md
       hover:shadow-lg hover:text-white hover:bg-purple-500"
-      {{on "click" this.saveSong}}
+      {{on 'click' this.saveSong}}
     >
       Save
     </button>
@@ -51,7 +51,7 @@
       type="button"
       class="bg-white rounded ml-2 px-4 py-2 border border-bg-purple-600
       shadow-md text-purple-600 hover:shadow-lg hover:bg-gray-200"
-      {{on "click" this.cancel}}
+      {{on 'click' this.cancel}}
     >
       Cancel
     </button>

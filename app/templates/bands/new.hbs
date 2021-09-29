@@ -13,6 +13,7 @@
         class="w-full text-gray-800 bg-white border rounded-md py-2 px-4"
         value={{this.name}}
         {{on 'input' this.updateName}}
+        data-test-rr="new-band-name"
       />
     </div>
   </div>
@@ -22,6 +23,7 @@
       class="px-4 py-2 mt-2 rounded bg-purple-600 shadow-md hover:shadow-lg
       hover:text-white"
       {{on 'click' this.saveBand}}
+      data-test-rr="save-band-button"
     >
       Save
     </button>
