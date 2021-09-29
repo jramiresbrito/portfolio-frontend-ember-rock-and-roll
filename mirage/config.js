@@ -8,4 +8,5 @@ export default function () {
   });
 
   this.post('/bands');
+  this.post('/songs');
 }
