@@ -1,5 +1,45 @@
 {{page-title @model.name ' 🎸 Rock & Roll with Octane' replace=true}}
 {{#if @model.songs.length}}
+  <div class="mb-8">
+    <span class="relative z-0 inline-flex shadow-sm">
+      <button
+        type="button"
+        class="rounded-l-md inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
+        data-test-rr="sort-by-title-asc"
+        {{on 'click' (set this 'sortBy' 'title')}}
+      >
+        Title
+        <FaIcon class="ml-2" @icon="angle-up" @prefix="fas" />
+      </button>
+      <button
+        type="button"
+        class="-ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
+        data-test-rr="sort-by-title-desc"
+        {{on 'click' (set this 'sortBy' '-title')}}
+      >
+        Title
+        <FaIcon class="ml-2" @icon="angle-down" @prefix="fas" />
+      </button>
+      <button
+        class="-ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
+        type="button"
+        data-test-rr="sort-by-rating-asc"
+        {{on 'click' (set this 'sortBy' 'rating')}}
+      >
+        Rating
+        <FaIcon class="ml-2" @icon="angle-up" @prefix="fas" />
+      </button>
+      <button
+        type="button"
+        class="rounded-r-md -ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text- gray-100 hover:bg-purple-500 hover:text-white"
+        data-test-rr="sort-by-rating-desc"
+        {{on 'click' (set this 'sortBy' '-rating')}}
+      >
+        Rating
+        <FaIcon class="ml-2" @icon="angle-down" @prefix="fas" />
+      </button>
+    </span>
+  </div>
   <ul>
     {{#each this.sortedSongs as |song|}}
       <li data-test-rr="song-list-item" class="mb-2">
@@ -25,8 +65,8 @@
       type="button"
       class="bg-purple-600 rounded px-4 py-2 shadow-md hover:shadow-lg
       hover:text-white hover:bg-purple-500 focus:outline-none"
-      {{on 'click' (set this 'showAddSong' false)}}
       data-test-rr="new-song-button"
+      {{on 'click' (set this 'showAddSong' false)}}
     >
       Add song
     </buttton>
@@ -38,15 +78,15 @@
       class="text-gray-800 bg-white rounded-md py-2 px-4"
       placeholder="Title"
       value={{this.title}}
-      {{on 'input' this.updateTitle}}
       data-test-rr="new-song-title"
+      {{on 'input' this.updateTitle}}
     />
     <button
       type="button"
       class="bg-purple-600 rounded px-4 py-2 ml-4 shadow-md
       hover:shadow-lg hover:text-white hover:bg-purple-500"
-      {{on 'click' this.saveSong}}
       data-test-rr="save-song-button"
+      {{on 'click' this.saveSong}}
     >
       Save
     </button>
