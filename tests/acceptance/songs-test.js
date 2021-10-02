@@ -62,5 +62,38 @@ module('Acceptance | Songs', function (hooks) {
         'Spinning in Daffodils',
         'The last song is the one that comes last in the alphabet'
       );
+
+    await click('[data-test-rr=sort-by-title-desc]');
+    assert
+      .dom('[data-test-rr=song-list-item]:first-child')
+      .hasText(
+        'Spinning in Daffodils',
+        'The first song is the one that comes last in the alphabet'
+      );
+    assert
+      .dom('[data-test-rr=song-list-item]:last-child')
+      .hasText(
+        'Elephants',
+        'The last song is the one that comes first in the alphabet'
+      );
+
+    await click('[data-test-rr=sort-by-rating-asc]');
+    assert
+      .dom('[data-test-rr=song-list-item]:first-child')
+      .hasText('Mind Eraser, No Chaser', 'The first song is the lowest rated');
+    assert
+      .dom('[data-test-rr=song-list-item]:last-child')
+      .hasText('Spinning in Daffodils', 'The last song is the highest rated');
+
+    await click('[data-test-rr=sort-by-rating-desc]');
+    assert
+      .dom('[data-test-rr=song-list-item]:first-child')
+      .hasText('Spinning in Daffodils', 'The first song is the highest rated');
+    assert
+      .dom('[data-test-rr=song-list-item]:last-child')
+      .hasAnyText(
+        'Mind Eraser, No Chaser',
+        'The last song is the lowest rated'
+      );
   });
 });
