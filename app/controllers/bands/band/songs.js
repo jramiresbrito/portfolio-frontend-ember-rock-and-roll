@@ -9,6 +9,15 @@ export default class BandsBandSongsController extends Controller {
   @tracked showAddSong = true;
   @tracked title = '';
 
+  get sortedSongs() {
+    return [...this.model.songs].sort((s1, s2) => {
+      if (s1.title < s2.title) return -1;
+      if (s1.title > s2.title) return 1;
+
+      return 0;
+    });
+  }
+
   @action
   updateTitle(event) {
     this.title = event.target.value;
