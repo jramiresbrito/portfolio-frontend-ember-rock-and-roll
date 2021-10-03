@@ -1,57 +1,15 @@
-# rock-and-roll
+# Rock and Roll with Octane App
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is app was developed while read the book [Rock and Roll with Ember.js](https://balinterdi.com/rock-and-roll-with-emberjs/) from [Balint Erdi](https://balinterdi.com/).
 
-## Prerequisites
+Main features
 
-You will need the following things properly installed on your computer.
+- Handwritten storage service - The app does not use Ember Data.
+- Consume data from JSON:API
+- BANDS & SONGS CRUD
+- Songs Rating
+- Search SONGS by title
+- Sorting SONGS by title or rating
+- Acceptance, Integration and Unit tests
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/)
-* [Yarn](https://yarnpkg.com/)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
-
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd rock-and-roll`
-* `yarn install`
-
-## Running / Development
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `yarn lint`
-* `yarn lint:fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+The app can be found in [https://jramiresbrito-rrwe.surge.sh/](https://jramiresbrito-rrwe.surge.sh/)
