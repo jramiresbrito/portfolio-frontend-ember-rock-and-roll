@@ -65,6 +65,8 @@ export default class BandsBandSongsController extends Controller {
   @action
   cancel() {
     this.title = '';
+    this.sortBy = 'title';
+    this.searchTerm = '';
     this.showAddSong = true;
   }
 }
