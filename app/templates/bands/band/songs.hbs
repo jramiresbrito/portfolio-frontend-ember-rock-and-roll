@@ -2,42 +2,38 @@
 {{#if @model.songs.length}}
   <div class="mb-8">
     <span class="relative z-0 inline-flex shadow-sm">
-      <button
-        type="button"
+      <LinkTo
+        @query={{hash s='title'}}
         class="rounded-l-md inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
         data-test-rr="sort-by-title-asc"
-        {{on 'click' (set this 'sortBy' 'title')}}
       >
         Title
         <FaIcon class="ml-2" @icon="angle-up" @prefix="fas" />
-      </button>
-      <button
-        type="button"
+      </LinkTo>
+      <LinkTo
+        @query={{hash s='-title'}}
         class="-ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
         data-test-rr="sort-by-title-desc"
-        {{on 'click' (set this 'sortBy' '-title')}}
       >
         Title
         <FaIcon class="ml-2" @icon="angle-down" @prefix="fas" />
-      </button>
-      <button
+      </LinkTo>
+      <LinkTo
+        @query={{hash s='rating'}}
         class="-ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
-        type="button"
         data-test-rr="sort-by-rating-asc"
-        {{on 'click' (set this 'sortBy' 'rating')}}
       >
         Rating
         <FaIcon class="ml-2" @icon="angle-up" @prefix="fas" />
-      </button>
-      <button
-        type="button"
+      </LinkTo>
+      <LinkTo
+        @query={{hash s='-rating'}}
         class="rounded-r-md -ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text- gray-100 hover:bg-purple-500 hover:text-white"
         data-test-rr="sort-by-rating-desc"
-        {{on 'click' (set this 'sortBy' '-rating')}}
       >
         Rating
         <FaIcon class="ml-2" @icon="angle-down" @prefix="fas" />
-      </button>
+      </LinkTo>
     </span>
   </div>
   <ul>
