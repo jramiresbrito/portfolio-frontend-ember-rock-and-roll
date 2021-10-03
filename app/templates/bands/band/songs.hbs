@@ -1,50 +1,65 @@
 {{page-title @model.name ' 🎸 Rock & Roll with Octane' replace=true}}
-{{#if @model.songs.length}}
-  <div class="mb-8">
+
+<div class="mb-8 flex">
+  {{#if this.sortedSongs.length}}
     <span class="relative z-0 inline-flex shadow-sm">
       <LinkTo
-        @query={{hash s='title'}}
         class="rounded-l-md inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
         data-test-rr="sort-by-title-asc"
+        @query={{hash s='title'}}
       >
         Title
         <FaIcon class="ml-2" @icon="angle-up" @prefix="fas" />
       </LinkTo>
       <LinkTo
-        @query={{hash s='-title'}}
         class="-ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
         data-test-rr="sort-by-title-desc"
+        @query={{hash s='-title'}}
       >
         Title
         <FaIcon class="ml-2" @icon="angle-down" @prefix="fas" />
       </LinkTo>
       <LinkTo
-        @query={{hash s='rating'}}
         class="-ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text-gray-100 hover:text-white hover:bg-purple-500"
         data-test-rr="sort-by-rating-asc"
+        @query={{hash s='rating'}}
       >
         Rating
         <FaIcon class="ml-2" @icon="angle-up" @prefix="fas" />
       </LinkTo>
       <LinkTo
-        @query={{hash s='-rating'}}
         class="rounded-r-md -ml-px inline-flex items-center px-4 py-2 border border-gray-500 bg-purple-600 leading-5 font-medium text- gray-100 hover:bg-purple-500 hover:text-white"
         data-test-rr="sort-by-rating-desc"
+        @query={{hash s='-rating'}}
       >
         Rating
         <FaIcon class="ml-2" @icon="angle-down" @prefix="fas" />
       </LinkTo>
     </span>
+  {{/if}}
+  <div class="relative ml-auto rounded-md shadow-sm">
+    <input
+      class="border rounded-md py-2 px-3 block w-full pr-10 text-gray-800 sm:text-sm sm:leading-5"
+      data-test-rr="search-box"
+      value={{this.searchTerm}}
+      {{on 'input' this.updateSearchTerm}}
+    />
+    <div
+      class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+    >
+      <FaIcon class="h-5 w-5 text-gray-400" @icon="search" @prefix="fas" />
+    </div>
   </div>
+</div>
+{{#if this.sortedSongs.length}}
   <ul>
     {{#each this.sortedSongs as |song|}}
-      <li data-test-rr="song-list-item" class="mb-2">
+      <li class="mb-2" data-test-rr="song-list-item">
         {{song.title}}
         <span class="float-right">
           <StarRating
             @rating={{song.rating}}
             @onUpdate={{fn this.updateRating song}}
-            @enableSpin={{true}}
           />
         </span>
       </li>
@@ -56,16 +71,15 @@
   </p>
 {{/if}}
 {{#if this.showAddSong}}
-  <div class="flex justify center mt-2">
-    <buttton
+  <div class="flex justify-center mt-2">
+    <button
       type="button"
-      class="bg-purple-600 rounded px-4 py-2 shadow-md hover:shadow-lg
-      hover:text-white hover:bg-purple-500 focus:outline-none"
+      class="px-4 py-2 rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none"
       data-test-rr="new-song-button"
       {{on 'click' (set this 'showAddSong' false)}}
     >
       Add song
-    </buttton>
+    </button>
   </div>
 {{else}}
   <div class="mt-6 flex">
@@ -79,8 +93,7 @@
     />
     <button
       type="button"
-      class="bg-purple-600 rounded px-4 py-2 ml-4 shadow-md
-      hover:shadow-lg hover:text-white hover:bg-purple-500"
+      class="ml-4 px-4 py-2 rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white"
       data-test-rr="save-song-button"
       {{on 'click' this.saveSong}}
     >
@@ -88,8 +101,8 @@
     </button>
     <button
       type="button"
-      class="bg-white rounded ml-2 px-4 py-2 border border-bg-purple-600
-      shadow-md text-purple-600 hover:shadow-lg hover:bg-gray-200"
+      class="ml-2 px-4 p-2 rounded bg-white border border-bg-
+        purple-600 shadow-md text-purple-600 hover:shadow-lg"
       {{on 'click' this.cancel}}
     >
       Cancel

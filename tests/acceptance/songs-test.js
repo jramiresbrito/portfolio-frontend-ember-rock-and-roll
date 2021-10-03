@@ -110,7 +110,9 @@ module('Acceptance | Songs', function (hooks) {
   });
 
   test('Search songs', async function (assert) {
-    let band = this.server.create('band', { name: 'Them Crooked Vultures' });
+    let band = this.server.create('band', {
+      name: 'Them Crooked Vultures',
+    });
     this.server.create('song', {
       title: 'Mind Eraser, No Chaser',
       rating: 2,
@@ -144,7 +146,7 @@ module('Acceptance | Songs', function (hooks) {
       .dom('[data-test-rr=song-list-item]')
       .exists({ count: 2 }, 'The songs matching the search term are displayed');
 
-    await click('[data-test-rr=song-by-title-desc]');
+    await click('[data-test-rr=sort-by-title-desc]');
     assert
       .dom('[data-test-rr=song-list-item]:first-child')
       .hasText(
